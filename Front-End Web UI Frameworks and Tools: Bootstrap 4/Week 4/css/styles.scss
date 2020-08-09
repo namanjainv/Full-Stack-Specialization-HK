@@ -77,14 +77,10 @@ body{
 
 .modal-header {
     background-color: $background-dark;
-    color: white;
+    color: floralwhite;
 
     .close {
-        color: white;
-    }
-
-    .close:hover {
-        color: white;
+        color: floralwhite;
     }
 }
 
