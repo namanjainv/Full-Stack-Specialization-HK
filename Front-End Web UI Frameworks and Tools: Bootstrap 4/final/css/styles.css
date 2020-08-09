@@ -55,11 +55,9 @@ body {
 
 .modal-header {
   background-color: #512DA8;
-  color: white; }
+  color: floralwhite; }
   .modal-header .close {
-    color: white; }
-  .modal-header .close:hover {
-    color: white; }
+    color: floralwhite; }
 
 .modal-body {
   background-color: #D1C4E9; }
