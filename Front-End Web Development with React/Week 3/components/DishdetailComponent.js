@@ -90,7 +90,7 @@ class Dishdetail extends Component {
                         </div>
                         <div className="col-12 col-md-5 m-1">
                             <RenderComments comments={this.props.comments} />
-                            <Button outline onClick={this.toggleCommentModal}><span className="fa fa-edit fa-lg"></span> Submit Comment</Button>
+                            <Button outline onClick={this.toggleCommentModal}><span className="fa fa-pencil fa-lg"></span> Submit Comment</Button>
                         </div>
                     </div>
                     <Modal isOpen={this.state.isCommentModalOpen} toggle={this.toggleCommentModal}>
