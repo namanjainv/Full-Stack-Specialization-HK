@@ -65,7 +65,7 @@ class CommentForm extends Component {
     }
 
     handleComment( values ) {
-        this.props.addComment( this.props.dishId, values.rating, values.name, values.comment )
+        this.props.postComment( this.props.dishId, values.rating, values.name, values.comment )
     }
 
     render( ) {
@@ -189,7 +189,7 @@ class Dishdetail extends Component {
 
                         <div className="col-12 col-md-5 m-1">
                             <RenderComments comments={this.props.comments} />
-                            <CommentForm addComment={ this.props.addComment } dishId={ this.props.dish.id } />
+                            <CommentForm postComment={ this.props.postComment } dishId={ this.props.dish.id } />
                         </div>
                     </div>
                 </div>
