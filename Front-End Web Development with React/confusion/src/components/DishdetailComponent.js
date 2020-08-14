@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Button, Row, Col, Label, Modal, ModalHeader, ModalBody,  } from 'reactstrap';
 
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
@@ -15,13 +16,19 @@ const minLength = (len) => (val) => val && (val.length >= len);
 function RenderDish({dish}) {
     return (
         <div>
-            <Card>
-                <CardImg top src={baseUrl + dish.image} alt={dish.name} />
-                <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
+             <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Card>
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+                    <CardBody>
+                    <CardTitle>{dish.name}</CardTitle>
+                    <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
         </div>
     )
 }
@@ -30,17 +37,22 @@ function RenderComments( { comments } ) {
 
     const commentsEl = comments.map(( dishComment ) => {
         return (
-            <div key={ dishComment.id }>
-                <p> { dishComment.comment } </p>
-                <p> -- { dishComment.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(dishComment.date)))} </p>
-            </div>
+
+            <Fade in>
+                <div key={ dishComment.id }>
+                    <p> { dishComment.comment } </p>
+                    <p> -- { dishComment.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(dishComment.date)))} </p>
+                </div>
+            </Fade>
         );
     });
 
     return (
         <div>
             <h3> Comments </h3>
-            { commentsEl }
+            <Stagger in>
+                { commentsEl }
+            </Stagger>
         </div>
     );
 }
