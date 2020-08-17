@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import { DISHES } from '../shared/dishes'
-import Menu from './MainComponent';
+import React from 'react';
+import { View, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
-class Main extends Component {
-    constructor( props ) {
-        super( props );
+function Menu(props) {
 
-        this.state = {
-            dishes: DISHERS
-        }
-    }
+    const renderMenuItem = ({item, index}) => {
 
-    render( ) {
-        return(
-            <Menu />
-        )
-    }
+        return (
+                <ListItem
+                    key={index}
+                    title={item.name}
+                    subtitle={item.description}
+                    hideChevron={true}
+                    leftAvatar={{ source: require('./images/uthappizza.png')}}
+                  />
+        );
+    };
+
+    return (
+        <View>
+            <FlatList 
+                data={props.dishes}
+                renderItem={renderMenuItem}
+                keyExtractor={item => item.id.toString()}
+                />
+        </View>
+    );
 }
 
-export default Main;
+
+export default Menu;
