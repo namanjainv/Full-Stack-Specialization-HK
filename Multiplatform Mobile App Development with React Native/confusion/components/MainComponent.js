@@ -8,6 +8,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
+import Contact from './ContactComponent';
+import About from './AboutComponent';
 
 const options = {
     headerStyle: {
@@ -33,9 +35,29 @@ const HomeStack = createStackNavigator();
 
 const HomeNavigator = () => {
     return(
-            <HomeStack.Navigator>
-                <HomeStack.Screen name="Home" component={Home} options={{ ...options, title: 'Home' }} />
-            </HomeStack.Navigator>
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={Home} options={{ ...options, title: 'Home' }} />
+        </HomeStack.Navigator>
+    )
+}
+
+const ContactStack = createStackNavigator();
+
+const ContactNavigator = () => {
+    return(
+        <ContactStack.Navigator>
+            <ContactStack.Screen name="Contact" component={Contact} options={{ ...options, title: 'Contact Us' }} />
+        </ContactStack.Navigator>
+    )
+}
+
+const AboutStack = createStackNavigator();
+
+const AboutNavigator = () => {
+    return(
+        <AboutStack.Navigator>
+            <AboutStack.Screen name="About" component={ About } options={{ ...options, title: 'About Us' }} />
+        </AboutStack.Navigator>
     )
 }
 
@@ -50,7 +72,9 @@ const MainNavigator = () => {
         <NavigationContainer>
             <MainDrawer.Navigator style={ drawerOptions } >
                 <MainDrawer.Screen name="Home" component={ HomeNavigator } options={{ title: 'Home', drawerLabel: 'Home' }} />
-                <MainDrawer.Screen name="Menu" component={ MenuNavigator } options={{ title: 'Menu', drawerLabel: 'Menu' }}/>
+                <MainDrawer.Screen name="About" component={ AboutNavigator } options={{ title: 'About Us', drawerLabel: 'About Us' }} />
+                <MainDrawer.Screen name="Menu" component={ MenuNavigator } options={{ title: 'Menu', drawerLabel: 'Menu' }} />
+                <MainDrawer.Screen name="Contact" component={ ContactNavigator } options={{ title: 'Contact Us', drawerLabel: 'Contact Us' }} />
             </MainDrawer.Navigator>
         </NavigationContainer>
     )
