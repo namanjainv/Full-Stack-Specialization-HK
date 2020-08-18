@@ -8,23 +8,15 @@ import Menu from './MenuComponent';
 import { DISHES } from '../shared/dishes';
 import Dishdetail from './DishdetailComponent';
 
-// const MenuNavigator = createStackNavigator({
-//     Menu: { screen: Menu },
-//     Dishdetail: { screen: Dishdetail }
-// },
-// {
-//     initialRouteName: 'Menu',
-//     navigationOptions: {
-//         headerStyle: {
-//             backgroundColor: "#512DA8"
-//         },
-//         headerTintColor: '#fff',
-//         headerTitleStyle: {
-//             color: "#fff"            
-//         }
-//     }
-// });
-
+const options = {
+    headerStyle: {
+        backgroundColor: "#512DA8"
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+        color: "#fff"            
+    }
+}
 const Stack = createStackNavigator();
 
 class Main extends Component {
@@ -39,8 +31,8 @@ class Main extends Component {
                 
                 <NavigationContainer>
                     <Stack.Navigator>
-                        <Stack.Screen name="Menu" component={Menu} options={{ title: 'Menu' }} />
-                        <Stack.Screen name="Dishdetail" component={Dishdetail} options={{ title: 'Dish Details' }} />
+                        <Stack.Screen name="Menu" component={Menu} options={{ ...options, title: 'Menu' }} />
+                        <Stack.Screen name="Dishdetail" component={Dishdetail} options={{ ...options, title: 'Dish Details' }} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
