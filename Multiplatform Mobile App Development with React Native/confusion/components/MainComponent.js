@@ -11,6 +11,7 @@ import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import Reservation from './ReservationComponent';
 
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -131,6 +132,29 @@ const AboutNavigator = ( props ) => {
     )
 }
 
+
+const ReservationStack = createStackNavigator();
+
+const ReservationNavigator = ( props ) => {
+    let navigation = props.navigation;
+    const navigationOptions = {
+        headerLeft: ( ) => (
+            <Icon name="bars" size={24}  
+                type='font-awesome'
+                color= 'white'
+                onPress={() => {
+                    navigation.toggleDrawer();
+                }}
+            />
+        )
+    }
+    return(
+        <ReservationStack.Navigator>
+            <ReservationStack.Screen name="About" component={ Reservation } options={{ ...options, title: 'Reserve Table', ...navigationOptions }} />
+        </ReservationStack.Navigator>
+    )
+}
+
 const MainDrawer = createDrawerNavigator();
 
 const drawerOptions = {
@@ -165,7 +189,7 @@ const MainNavigator = () => {
                             name='home'
                             type='font-awesome'            
                             size={24}
-                            color={tintColor}
+                            iconStyle={{ color: tintColor }}
                             />
                         ) }} />
                 <MainDrawer.Screen name="About" component={ AboutNavigator } options={{ 
@@ -175,7 +199,7 @@ const MainNavigator = () => {
                           name='info-circle'
                           type='font-awesome'            
                           size={24}
-                          color={tintColor}
+                          iconStyle={{ color: tintColor }}
                         />
                       ), }} />
                 <MainDrawer.Screen name="Menu" component={ MenuNavigator } options={{ title: 'Menu', drawerLabel: 'Menu',
@@ -184,7 +208,7 @@ const MainNavigator = () => {
                         name='list'
                         type='font-awesome'            
                         size={24}
-                        color={tintColor}
+                        iconStyle={{ color: tintColor }}
                         />
                     ), }} />
                 <MainDrawer.Screen name="Contact" component={ ContactNavigator } options={{ title: 'Contact Us', drawerLabel: 'Contact Us',
@@ -193,7 +217,16 @@ const MainNavigator = () => {
                         name='address-card'
                         type='font-awesome'            
                         size={22}
-                        color={tintColor}
+                        iconStyle={{ color: tintColor }}
+                    />
+                    ), }} />
+                <MainDrawer.Screen name="Reservation" component={ ReservationNavigator } options={{ title: 'Reserve Table', drawerLabel: 'Reserve Table',
+                    drawerIcon: ({ tintColor, focused }) => (
+                    <Icon
+                        name='cutlery'
+                        type='font-awesome'            
+                        size={24}
+                        iconStyle={{ color: tintColor }}
                     />
                     ), }} />
             </MainDrawer.Navigator>
