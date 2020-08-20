@@ -11,6 +11,7 @@ import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import Favorite from './FavoriteComponent';
 import Reservation from './ReservationComponent';
 
 import { connect } from 'react-redux';
@@ -133,6 +134,28 @@ const AboutNavigator = ( props ) => {
 }
 
 
+const FavoriteStack = createStackNavigator();
+
+const FavoriteNavigator = ( props ) => {
+    let navigation = props.navigation;
+    const navigationOptions = {
+        headerLeft: ( ) => (
+            <Icon name="bars" size={24}  
+                type='font-awesome'
+                color= 'white'
+                onPress={() => {
+                    navigation.toggleDrawer();
+                }}
+            />
+        )
+    }
+    return(
+        <FavoriteStack.Navigator>
+            <FavoriteStack.Screen name="Favorite" component={ Favorite } options={{ ...options, title: 'My Favorites', ...navigationOptions }} />
+        </FavoriteStack.Navigator>
+    )
+}
+
 const ReservationStack = createStackNavigator();
 
 const ReservationNavigator = ( props ) => {
@@ -217,6 +240,15 @@ const MainNavigator = () => {
                         name='address-card'
                         type='font-awesome'            
                         size={22}
+                        iconStyle={{ color: tintColor }}
+                    />
+                    ), }} />
+                <MainDrawer.Screen name="Favorite" component={ FavoriteNavigator } options={{ title: 'My Favorites', drawerLabel: 'My Favorites',
+                    drawerIcon: ({ tintColor, focused }) => (
+                    <Icon
+                        name='heart'
+                        type='font-awesome'            
+                        size={24}
                         iconStyle={{ color: tintColor }}
                     />
                     ), }} />
