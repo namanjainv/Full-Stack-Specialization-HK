@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 
+import Login from './LoginComponent';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
@@ -66,6 +67,30 @@ const MenuNavigator = ( props ) => {
             </MenuStack.Navigator>
     )
 }
+
+
+const LoginStack = createStackNavigator();
+
+const LoginNavigator = ( props ) => {
+    let navigation = props.navigation;
+    const navigationOptions = {
+        headerLeft: ( ) => (
+            <Icon name="bars" size={24}  
+                type='font-awesome'
+                color= 'white'
+                onPress={() => {
+                    navigation.toggleDrawer();
+                }}
+            />
+        )
+    }
+    return(
+        <LoginStack.Navigator>
+            <LoginStack.Screen name="Login" component={Login} options={{ ...options, title: 'Login', ...navigationOptions }} />
+        </LoginStack.Navigator>
+    )
+}
+
 
 const HomeStack = createStackNavigator();
 
@@ -205,7 +230,20 @@ const CustomDrawerContentComponent = (props) => (
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <MainDrawer.Navigator style={ drawerOptions } drawerContent={ props => <CustomDrawerContentComponent {...props}  /> } >
+            <MainDrawer.Navigator 
+                    style={ drawerOptions } 
+                    drawerContent={ props => <CustomDrawerContentComponent {...props}  /> } 
+                    initialRouteName="Home">
+                <MainDrawer.Screen name="Login" component={ LoginNavigator } options={{ 
+                    title: 'Login', drawerLabel: 'Login', 
+                    drawerIcon: ({ tintColor, focused }) => (
+                        <Icon
+                            name='sign-in'
+                            type='font-awesome'            
+                            size={24}
+                            iconStyle={{ color: tintColor }}
+                            />
+                        ) }} />
                 <MainDrawer.Screen name="Home" component={ HomeNavigator } options={{ 
                     title: 'Home', drawerLabel: 'Home', 
                     drawerIcon: ({ tintColor, focused }) => (
