@@ -21,12 +21,26 @@ const mapDispatchToProps = dispatch => ({
     postComment: ( commentData ) => dispatch( postComment( commentData ) )
 })
 
-function RenderDish(props) {
-
+class RenderDish extends Component {
     handleViewRef = ref => this.view = ref;
+    constructor(props) {
+        super( props )
+    }
+
+    render() {
+        let props = this.props;
+
 
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
         if ( dx < -200 )
+            return true;
+        else
+            return false;
+    }
+
+
+    const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+        if ( dx < 200 )
             return true;
         else
             return false;
@@ -53,6 +67,9 @@ function RenderDish(props) {
                     { cancelable: false }
                 );
 
+            if( recognizeComment( gestureState ) ) {
+                props.toggleCommentModal();
+            }
             return true;
         }
     })
@@ -98,6 +115,7 @@ function RenderDish(props) {
         else {
             return(<View></View>);
         }
+    }
 }
 
 function RenderComments( props ) {

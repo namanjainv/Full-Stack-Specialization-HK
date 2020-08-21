@@ -152,6 +152,7 @@ const FavoriteNavigator = ( props ) => {
     return(
         <FavoriteStack.Navigator>
             <FavoriteStack.Screen name="Favorite" component={ Favorite } options={{ ...options, title: 'My Favorites', ...navigationOptions }} />
+            <FavoriteStack.Screen name="Dishdetail" component={Dishdetail} options={{ ...options, title: 'Dish Details' }} />
         </FavoriteStack.Navigator>
     )
 }

@@ -21,6 +21,10 @@ const mapDispatchToProps = dispatch => ({
 
 class Favorites extends Component {
 
+    constructor( props ) {
+        super( props );
+    }
+
     static navigationOptions = {
         title: 'My Favorites'
     };
