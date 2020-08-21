@@ -44,8 +44,11 @@ class Reservation extends Component {
             'Your Reservation',
             'Number of Guests: ' + this.state.guests + '\nSmoking? ' + (this.state.smoking ? "Yes" : "No") + "\nDate and Time: " + (this.state.date.toString()),
             [
-                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'OK', onPress: () => this.handleReservation() }
+                {text: 'Cancel', onPress: () => this.resetForm()},
+                {text: 'OK', onPress: () => { 
+                    this.handleReservation()
+                    this.resetForm()
+                }}
             ],
             { cancelable: false }
         );
